@@ -1,12 +1,15 @@
 import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { Libro } from '../libro';
+import { RestService } from '../rest/rest.service';
 
 @Controller('libro')
 export class LibroController {
 
+    constructor(private readonly restService: RestService) { }
+
     @Get() // Listado libros
-    findAll(): string {
-        return 'GET []';
+    findAll(): Libro[] {
+        return this.restService.getLibros();
     }
 
     @Post() // Crear libro
@@ -18,7 +21,9 @@ export class LibroController {
         item.titulo = libro.titulo;
         item.autor = libro.autor;
         item.fecha = libro.fecha;
-
+        
+        this.restService.addLibro(item);
+        
         return item;
     }
 
