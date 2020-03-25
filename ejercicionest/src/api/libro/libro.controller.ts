@@ -5,6 +5,7 @@ import { RestService } from '../rest/rest.service';
 @Controller('libro')
 export class LibroController {
 
+    private id: number = 0;
     constructor(private readonly restService: RestService) { }
 
     @Get() // Listado libros
@@ -17,13 +18,14 @@ export class LibroController {
 
         // Leer datos libro y meterlo en la BBDD
         const item = new Libro();
-        item.id = libro.id;
+        item.id = this.id;
         item.titulo = libro.titulo;
         item.autor = libro.autor;
         item.fecha = libro.fecha;
-        
+
         this.restService.addLibro(item);
-        
+        this.id++;
+
         return item;
     }
 
