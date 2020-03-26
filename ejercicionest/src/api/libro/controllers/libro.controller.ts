@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { Libro } from '../interfaces/libro';
 import { Service } from '../../rest/services/rest.service';
+import { RestService } from '../../rest/services/rest.service';
 
 @Controller('libro')
 export class LibroController {
