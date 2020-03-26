@@ -1,15 +1,23 @@
 import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
-import { Libro } from '../interfaces/libro';
-import { Service } from '../../rest/services/rest.service';
-import { RestService } from '../../rest/services/rest.service';
+// import { Libro } from '../interfaces/libro';
+// import { RestService } from '../../rest/services/rest.service';
+
+import { Libro } from '../interfaces/libro-mongo';
+import { LibroService } from '../services/libro.service';
 
 @Controller('libro')
 export class LibroController {
 
     private id: number = 0;
-    constructor(private readonly service: RestService) { }
+    constructor(private readonly service: LibroService) { }
 
     @Get() // Listado libros
+    async findAll(): Promise<Libro[]> {
+        return this.service.getLibros();
+    }
+
+    /*
+    @Get
     findAll(): Libro[] {
         return this.service.getLibros();
     }
@@ -60,5 +68,6 @@ export class LibroController {
 
         return item;
     }
+    */
 
 }
