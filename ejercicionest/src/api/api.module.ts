@@ -4,10 +4,11 @@ import { RestService } from './rest/services/rest.service';
 
 import { MongooseModule } from '@nestjs/mongoose';
 import { LibroSchema } from './libro/schemas/libro.schema';
+import { LibroService } from './libro/services/libro.service';
 
 @Module({
   controllers: [LibroController],
-  providers: [RestService],
+  providers: [RestService, LibroService],
   imports: [
     MongooseModule.forFeature([{
       name: 'Libro',
