@@ -31,15 +31,8 @@ export class LibroController {
 
     @Get('/:id') // Obtener libro
     getById(@Param() params): Libro {
-
         // Obtener ID desde la BBDD
-        const item = new Libro();
-        item.id = params.id;
-        item.titulo = 'Los 3 cerditos';
-        item.autor = 'Ni idea';
-        item.fecha = '1994';
-
-        return item;
+        return this.restService.getLibro(params.id);
     }
 
     @Put('/:id') // modificar libro

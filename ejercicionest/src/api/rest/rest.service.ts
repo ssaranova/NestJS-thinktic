@@ -18,4 +18,14 @@ export class RestService {
         this.libros.push(libro);
     }
 
+    getLibro(id: number): Libro {
+        let response: Libro = new Libro();
+        this.getLibros().forEach(function (libro) {
+            if (libro.id == id) {
+                response = libro;
+            }
+        });
+        return response;
+    }
+
 }
