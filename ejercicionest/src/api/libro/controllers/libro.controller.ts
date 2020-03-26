@@ -6,7 +6,7 @@ import { Service } from '../../rest/services/rest.service';
 export class LibroController {
 
     private id: number = 0;
-    constructor(private readonly service: Service) { }
+    constructor(private readonly service: RestService) { }
 
     @Get() // Listado libros
     findAll(): Libro[] {
