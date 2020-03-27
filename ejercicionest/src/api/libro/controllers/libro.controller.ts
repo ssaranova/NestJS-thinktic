@@ -8,12 +8,35 @@ import { LibroService } from '../services/libro.service';
 @Controller('libro')
 export class LibroController {
 
-    private id: number = 0;
     constructor(private readonly service: LibroService) { }
 
     @Get() // Listado libros
     async findAll(): Promise<Libro[]> {
-        return this.service.getLibros();
+        return this.service.list();
+    }
+
+    @Post() // Crear libro
+    async addOne(@Body() item: Libro): Promise<Libro> {
+        // Leer datos libro y meterlo en la BBDD
+        return this.service.add(item)
+    }
+
+    @Get(':id') // Obtener libro
+    async getById(@Param('id') id: string): Promise<Libro> {
+        // Obtener ID desde la BBDD
+        return this.service.get(id);
+    }
+
+    @Put(':id') // modificar libro
+    modifyById(@Param('id') id: string, @Body() item: Libro): Promise<Libro> {
+        // Capturar el id y buscarlo en la BBDD y luego guardar los cambios
+        return this.service.update(id, item);
+    }
+
+    @Delete(':id') // eliminar libro
+    deleteById(@Param('id') id: string): Promise<Libro> {
+        // Coger el id consultar a la bbdd y luego borrar el objeto
+        return this.service.delete(id);
     }
 
     /*
