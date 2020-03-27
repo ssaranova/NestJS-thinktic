@@ -8,7 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [
     ApiModule,
     MongooseModule.forRoot(
-      'mongodb://localhost/libros',
+      'mongodb://localhost:27017/test', // The database name
       {
         useNewUrlParser: true,
         useUnifiedTopology: true

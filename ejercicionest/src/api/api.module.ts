@@ -10,10 +10,13 @@ import { LibroService } from './libro/services/libro.service';
   controllers: [LibroController],
   providers: [RestService, LibroService],
   imports: [
-    MongooseModule.forFeature([{
-      name: 'Libro',
-      schema: LibroSchema }]
-    )
+    MongooseModule.forFeature([
+      {
+        name: 'Libro', // The model name
+        schema: LibroSchema, // The schema
+        collection: 'libros' // The collection name
+      }
+    ])
   ],
 })
-export class ApiModule {}
+export class ApiModule { }
